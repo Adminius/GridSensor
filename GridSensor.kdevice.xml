@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KonnektingDevice xmlns="http://konnekting.de/xml/KonnektingDevice/v0">
+    <Device ManufacturerId="7070" DeviceId="180" Revision="1">
+        <ManufacturerName>KONNEKTING</ManufacturerName>
+        <DeviceName>Gridsensor 0.3</DeviceName>
+        <Parameters>
+            <ParameterGroup Name="Temperature sensor" Id="0">
+                <Parameter Id="0" IdName="tempSendUpdate">
+                    <Description>Send value</Description>
+                    <Value Type="uint8" Default="00" Options="00=Sensor inactive|01=on change|02=cyclic"/>
+                </Parameter>
+                <Parameter Id="1" IdName="tempDiff">
+                    <Description>Temperature change</Description>
+                    <Value Type="uint8" Default="02" Options="01=0,1°|02=0,2°|03=0,3°|04=0,4°|05=0,5°|06=0,6°|07=0,7°|08=0,8°|09=0,9°|0A=1°|0F=1,5°|14=2°"/>
+                </Parameter>
+                <Parameter Id="2" IdName="tempCycle">
+                    <Description>Cycle [30 - 3600 s]</Description>
+                    <Value Type="uint16" Default="003C" Options="" Min="001E" Max="0E10"/>
+                </Parameter>
+                <Parameter Id="3" IdName="tempOffset">
+                    <Description>Offset (Value[-100..100] * 0,1°)</Description>
+                    <Value Type="int8" Default="00" Options="" Min="9C" Max="64"/>
+                </Parameter>
+                <Parameter Id="4" IdName="tempMinValue">
+                    <Description>Send value at min</Description>
+                    <Value Type="uint8" Default="FF" Options="FF=do nothing|01=1|00=0"/>
+                </Parameter>
+                <Parameter Id="5" IdName="tempMinLimit">
+                    <Description>Min limit (Value[-400..1250] * 0,1°)</Description>
+                    <Value Type="int16" Default="0000" Options="" Min="FE70" Max="04E2"/>
+                </Parameter>
+                <Parameter Id="6" IdName="tempMaxValue">
+                    <Description>Send value at max</Description>
+                    <Value Type="uint8" Default="FF" Options="FF=do nothing|01=1|00=0"/>
+                </Parameter>
+                <Parameter Id="7" IdName="tempMaxLimit">
+                    <Description>Max limit (Value[-400..1250] * 0,1°)</Description>
+                    <Value Type="int16" Default="0000" Options="" Min="FE70" Max="04E2"/>
+                </Parameter>
+            </ParameterGroup>
+            <ParameterGroup Name="Relative humidity sensor" Id="1">
+                <Parameter Id="8" IdName="rhSendUpdate">
+                    <Description>Send value</Description>
+                    <Value Type="uint8" Default="00" Options="00=Sensor inactive|01=on change|02=cyclic"/>
+                </Parameter>
+                <Parameter Id="9" IdName="rhDiff">
+                    <Description>Humidity change</Description>
+                    <Value Type="uint8" Default="05" Options="05=0,5%|0A=1%|0F=1,5%|14=2%|19=2,5%|1E=3%|23=3,5%|28=4%"/>
+                </Parameter>
+                <Parameter Id="10" IdName="rhCycle">
+                    <Description>Cycle [30 - 3600 s]</Description>
+                    <Value Type="uint16" Default="003C" Options="" Min="001E" Max="0E10"/>
+                </Parameter>
+                <Parameter Id="11" IdName="rhOffset">
+                    <Description>Offset (Value[-100..100] * 0,1%)</Description>
+                    <Value Type="int8" Default="00" Options="" Min="9C" Max="64"/>
+                </Parameter>
+                <Parameter Id="12" IdName="rhMinValue">
+                    <Description>Send value at min</Description>
+                    <Value Type="uint8" Default="FF" Options="FF=do nothing|01=1|00=0"/>
+                </Parameter>
+                <Parameter Id="13" IdName="rhMinLimit">
+                    <Description>Min limit (Value[0..1000] * 0,1%)</Description>
+                    <Value Type="int16" Default="0000" Options="" Min="0000" Max="03E8"/>
+                </Parameter>
+                <Parameter Id="14" IdName="rhMaxValue">
+                    <Description>Send value at max</Description>
+                    <Value Type="uint8" Default="FF" Options="FF=do nothing|01=1|00=0"/>
+                </Parameter>
+                <Parameter Id="15" IdName="rhMaxLimit">
+                    <Description>Max limit (Value[0..1000] * 0,1%)</Description>
+                    <Value Type="int16" Default="0000" Options="" Min="0000" Max="03E8"/>
+                </Parameter>
+            </ParameterGroup>
+            <ParameterGroup Name="VOC Sensor" Id="2">
+                <Parameter Id="16" IdName="vocSendUpdate">
+                    <Description>Send value</Description>
+                    <Value Type="uint8" Default="00" Options="00=Sensor inactive|01=on change|02=cyclic"/>
+                </Parameter>
+                <Parameter Id="17" IdName="vocDiff">
+                    <Description>VOC change</Description>
+                    <Value Type="uint8" Default="02" Options="01=1%|02=2%|03=3%|04=4%|05=5%|06=6%|07=7%|08=8%|09=9%|0A=10%|0F=15%|14=20%"/>
+                </Parameter>
+                <Parameter Id="18" IdName="vocPollingTime">
+                    <Description>Cycle [30 - 3600 s]</Description>
+                    <Value Type="uint16" Default="003C" Options="" Min="001E" Max="0E10"/>
+                </Parameter>
+                <Parameter Id="19" IdName="vocOffset">
+                    <Description>Offset [-1000..1000 ppm]</Description>
+                    <Value Type="int16" Default="0000" Options="" Min="FC18" Max="03E8"/>
+                </Parameter>
+                <Parameter Id="20" IdName="vocMinValue">
+                    <Description>Send value at min</Description>
+                    <Value Type="uint8" Default="FF" Options="FF=do nothing|01=1|00=0"/>
+                </Parameter>
+                <Parameter Id="21" IdName="vocMinLimit">
+                    <Description>Min limit [400..2000]</Description>
+                    <Value Type="int16" Default="0190" Options="" Min="0190" Max="07D0"/>
+                </Parameter>
+                <Parameter Id="22" IdName="vocMaxValue">
+                    <Description>Send value at max</Description>
+                    <Value Type="uint8" Default="FF" Options="FF=do nothing|01=1|00=0"/>
+                </Parameter>
+                <Parameter Id="23" IdName="vocMaxLimit">
+                    <Description>Max limit [400..2000]</Description>
+                    <Value Type="int16" Default="07D0" Options="" Min="0190" Max="07D0"/>
+                </Parameter>
+            </ParameterGroup>
+            <ParameterGroup Name="OneWire Temperature sensor" Id="3">
+                <Parameter Id="24" IdName="owtempSendUpdate">
+                    <Description>Send value</Description>
+                    <Value Type="uint8" Default="00" Options="00=Sensor inactive|01=on change|02=cyclic"/>
+                </Parameter>
+                <Parameter Id="25" IdName="owtempDiff">
+                    <Description>Temperature change</Description>
+                    <Value Type="uint8" Default="02" Options="01=0,1°|02=0,2°|03=0,3°|04=0,4°|05=0,5°|06=0,6°|07=0,7°|08=0,8°|09=0,9°|0A=1°|0F=1,5°|14=2°"/>
+                </Parameter>
+                <Parameter Id="26" IdName="owtempCycle">
+                    <Description>Cycle [30 - 3600 s]</Description>
+                    <Value Type="uint16" Default="003C" Options="" Min="001E" Max="0E10"/>
+                </Parameter>
+                <Parameter Id="27" IdName="owtempOffset">
+                    <Description>Offset (Value[-100..100] * 0,1°)</Description>
+                    <Value Type="int8" Default="00" Options="" Min="9C" Max="64"/>
+                </Parameter>
+                <Parameter Id="28" IdName="owtempMinValue">
+                    <Description>Send value at min</Description>
+                    <Value Type="uint8" Default="FF" Options="FF=do nothing|01=1|00=0"/>
+                </Parameter>
+                <Parameter Id="29" IdName="owtempMinLimit">
+                    <Description>Min limit (Value[-550..1250] * 0,1°)</Description>
+                    <Value Type="int16" Default="0000" Options="" Min="FDDA" Max="04E2"/>
+                </Parameter>
+                <Parameter Id="30" IdName="owtempMaxValue">
+                    <Description>Send value at max</Description>
+                    <Value Type="uint8" Default="FF" Options="FF=do nothing|01=1|00=0"/>
+                </Parameter>
+                <Parameter Id="31" IdName="owtempMaxLimit">
+                    <Description>Max limit (Value[-550..1250] * 0,1°)</Description>
+                    <Value Type="int16" Default="0000" Options="" Min="FDDA" Max="04E2"/>
+                </Parameter>
+            </ParameterGroup>
+            <ParameterGroup Name="Button" Id="4">
+                <Parameter Id="32" IdName="btnType">
+                    <Description>Button mode</Description>
+                    <Value Type="uint8" Default="00" Options="00=inactive|02=short click|03=short/long click"/>
+                </Parameter>
+                <Parameter Id="33" IdName="btnLongClickDuration">
+                    <Description>Long click duration [200..1000ms]</Description>
+                    <Value Type="uint16" Default="01C2" Options="" Min="00C8" Max="03E8"/>
+                </Parameter>
+                <Parameter Id="34" IdName="btnValueShortClick">
+                    <Description>Short click value</Description>
+                    <Value Type= "uint8" Default="40" Options="40=switch value|50=Value 0|51=Value 1|00=Scene 1|01=Scene 2|02=Scene 3|03=Scene 4|04=Scene 5|05=Scene 6|06=Scene 7|07=Scene 8|08=Scene 9|09=Scene 10|0A=Scene 11|0B=Scene 12|0C=Scene 13|0D=Scene 14|0E=Scene 15|0F=Scene 16|10=Scene 17|11=Scene 18|12=Scene 19|13=Scene 20|14=Scene 21|15=Scene 22|16=Scene 23|17=Scene 24|18=Scene 25|19=Scene 26|1A=Scene 27|1B=Scene 28|1C=Scene 29|1D=Scene 30|1E=Scene 31|1F=Scene 32|20=Scene 33|21=Scene 34|22=Scene 35|23=Scene 36|24=Scene 37|25=Scene 38|26=Scene 39|27=Scene 40|28=Scene 41|29=Scene 42|2A=Scene 43|2B=Scene 44|2C=Scene 45|2D=Scene 46|2E=Scene 47|2F=Scene 48|30=Scene 49|31=Scene 50|32=Scene 51|33=Scene 52|34=Scene 53|35=Scene 54|36=Scene 55|37=Scene 56|38=Scene 57|39=Scene 58|3A=Scene 59|3B=Scene 60|3C=Scene 61|3D=Scene 62|3E=Scene 63|3F=Scene 64"/>
+                </Parameter>
+                <Parameter Id="35" IdName="btnValueLongClick">
+                    <Description>Long click value</Description>
+                    <Value Type= "uint8" Default="40" Options="40=switch value|50=Value 0|51=Value 1|00=Scene 1|01=Scene 2|02=Scene 3|03=Scene 4|04=Scene 5|05=Scene 6|06=Scene 7|07=Scene 8|08=Scene 9|09=Scene 10|0A=Scene 11|0B=Scene 12|0C=Scene 13|0D=Scene 14|0E=Scene 15|0F=Scene 16|10=Scene 17|11=Scene 18|12=Scene 19|13=Scene 20|14=Scene 21|15=Scene 22|16=Scene 23|17=Scene 24|18=Scene 25|19=Scene 26|1A=Scene 27|1B=Scene 28|1C=Scene 29|1D=Scene 30|1E=Scene 31|1F=Scene 32|20=Scene 33|21=Scene 34|22=Scene 35|23=Scene 36|24=Scene 37|25=Scene 38|26=Scene 39|27=Scene 40|28=Scene 41|29=Scene 42|2A=Scene 43|2B=Scene 44|2C=Scene 45|2D=Scene 46|2E=Scene 47|2F=Scene 48|30=Scene 49|31=Scene 50|32=Scene 51|33=Scene 52|34=Scene 53|35=Scene 54|36=Scene 55|37=Scene 56|38=Scene 57|39=Scene 58|3A=Scene 59|3B=Scene 60|3C=Scene 61|3D=Scene 62|3E=Scene 63|3F=Scene 64"/>
+                </Parameter>
+            </ParameterGroup>
+            <ParameterGroup Name="Binary input D0" Id="5">
+                <Parameter Id="36" IdName="binD0type">
+                    <Description>Send value</Description>
+                    <Value Type="uint8" Default="00" Options="00=inactive|01=open/close|02=switch value"/>
+                </Parameter>
+                <Parameter Id="37" IdName="binD0cycle">
+                    <Description>Cycle [0..65535ms]</Description>
+                    <Value Type="uint16" Default="00C8" Options="" Min="0000" Max="FFFF"/>
+                </Parameter>
+                <Parameter Id="38" IdName="binD0delay">
+                    <Description>Delay [0..1000s]</Description>
+                    <Value Type="int16" Default="0000" Options="" Min="0000" Max="03E8"/>
+                </Parameter>
+                <Parameter Id="39" IdName="binD0open">
+                    <Description>Value open</Description>
+                    <Value Type= "uint8" Default="50" Options="FF=do nothing|50=Value 0|51=Value 1|00=Scene 1|01=Scene 2|02=Scene 3|03=Scene 4|04=Scene 5|05=Scene 6|06=Scene 7|07=Scene 8|08=Scene 9|09=Scene 10|0A=Scene 11|0B=Scene 12|0C=Scene 13|0D=Scene 14|0E=Scene 15|0F=Scene 16|10=Scene 17|11=Scene 18|12=Scene 19|13=Scene 20|14=Scene 21|15=Scene 22|16=Scene 23|17=Scene 24|18=Scene 25|19=Scene 26|1A=Scene 27|1B=Scene 28|1C=Scene 29|1D=Scene 30|1E=Scene 31|1F=Scene 32|20=Scene 33|21=Scene 34|22=Scene 35|23=Scene 36|24=Scene 37|25=Scene 38|26=Scene 39|27=Scene 40|28=Scene 41|29=Scene 42|2A=Scene 43|2B=Scene 44|2C=Scene 45|2D=Scene 46|2E=Scene 47|2F=Scene 48|30=Scene 49|31=Scene 50|32=Scene 51|33=Scene 52|34=Scene 53|35=Scene 54|36=Scene 55|37=Scene 56|38=Scene 57|39=Scene 58|3A=Scene 59|3B=Scene 60|3C=Scene 61|3D=Scene 62|3E=Scene 63|3F=Scene 64"/>
+                </Parameter>
+                <Parameter Id="40" IdName="binD0close">
+                    <Description>Value close</Description>
+                    <Value Type= "uint8" Default="51" Options="FF=do nothing|50=Value 0|51=Value 1|00=Scene 1|01=Scene 2|02=Scene 3|03=Scene 4|04=Scene 5|05=Scene 6|06=Scene 7|07=Scene 8|08=Scene 9|09=Scene 10|0A=Scene 11|0B=Scene 12|0C=Scene 13|0D=Scene 14|0E=Scene 15|0F=Scene 16|10=Scene 17|11=Scene 18|12=Scene 19|13=Scene 20|14=Scene 21|15=Scene 22|16=Scene 23|17=Scene 24|18=Scene 25|19=Scene 26|1A=Scene 27|1B=Scene 28|1C=Scene 29|1D=Scene 30|1E=Scene 31|1F=Scene 32|20=Scene 33|21=Scene 34|22=Scene 35|23=Scene 36|24=Scene 37|25=Scene 38|26=Scene 39|27=Scene 40|28=Scene 41|29=Scene 42|2A=Scene 43|2B=Scene 44|2C=Scene 45|2D=Scene 46|2E=Scene 47|2F=Scene 48|30=Scene 49|31=Scene 50|32=Scene 51|33=Scene 52|34=Scene 53|35=Scene 54|36=Scene 55|37=Scene 56|38=Scene 57|39=Scene 58|3A=Scene 59|3B=Scene 60|3C=Scene 61|3D=Scene 62|3E=Scene 63|3F=Scene 64"/>
+                </Parameter>
+            </ParameterGroup>
+            <ParameterGroup Name="Binary input D1" Id="6">
+                <Parameter Id="41" IdName="binD1type">
+                    <Description>Send value</Description>
+                    <Value Type="uint8" Default="00" Options="00=inactive|01=open/close|02=switch value"/>
+                </Parameter>
+                <Parameter Id="42" IdName="binD1cycle">
+                    <Description>Cycle [0..65535ms]</Description>
+                    <Value Type="uint16" Default="00C8" Options="" Min="0000" Max="FFFF"/>
+                </Parameter>
+                <Parameter Id="43" IdName="binD1delay">
+                    <Description>Delay [0..1000s]</Description>
+                    <Value Type="int16" Default="0000" Options="" Min="0000" Max="03E8"/>
+                </Parameter>
+                <Parameter Id="44" IdName="binD1open">
+                    <Description>Value open</Description>
+                    <Value Type= "uint8" Default="50" Options="FF=do nothing|50=Value 0|51=Value 1|00=Scene 1|01=Scene 2|02=Scene 3|03=Scene 4|04=Scene 5|05=Scene 6|06=Scene 7|07=Scene 8|08=Scene 9|09=Scene 10|0A=Scene 11|0B=Scene 12|0C=Scene 13|0D=Scene 14|0E=Scene 15|0F=Scene 16|10=Scene 17|11=Scene 18|12=Scene 19|13=Scene 20|14=Scene 21|15=Scene 22|16=Scene 23|17=Scene 24|18=Scene 25|19=Scene 26|1A=Scene 27|1B=Scene 28|1C=Scene 29|1D=Scene 30|1E=Scene 31|1F=Scene 32|20=Scene 33|21=Scene 34|22=Scene 35|23=Scene 36|24=Scene 37|25=Scene 38|26=Scene 39|27=Scene 40|28=Scene 41|29=Scene 42|2A=Scene 43|2B=Scene 44|2C=Scene 45|2D=Scene 46|2E=Scene 47|2F=Scene 48|30=Scene 49|31=Scene 50|32=Scene 51|33=Scene 52|34=Scene 53|35=Scene 54|36=Scene 55|37=Scene 56|38=Scene 57|39=Scene 58|3A=Scene 59|3B=Scene 60|3C=Scene 61|3D=Scene 62|3E=Scene 63|3F=Scene 64"/>
+                </Parameter>
+                <Parameter Id="45" IdName="binD1close">
+                    <Description>Value close</Description>
+                    <Value Type= "uint8" Default="51" Options="FF=do nothing|50=Value 0|51=Value 1|00=Scene 1|01=Scene 2|02=Scene 3|03=Scene 4|04=Scene 5|05=Scene 6|06=Scene 7|07=Scene 8|08=Scene 9|09=Scene 10|0A=Scene 11|0B=Scene 12|0C=Scene 13|0D=Scene 14|0E=Scene 15|0F=Scene 16|10=Scene 17|11=Scene 18|12=Scene 19|13=Scene 20|14=Scene 21|15=Scene 22|16=Scene 23|17=Scene 24|18=Scene 25|19=Scene 26|1A=Scene 27|1B=Scene 28|1C=Scene 29|1D=Scene 30|1E=Scene 31|1F=Scene 32|20=Scene 33|21=Scene 34|22=Scene 35|23=Scene 36|24=Scene 37|25=Scene 38|26=Scene 39|27=Scene 40|28=Scene 41|29=Scene 42|2A=Scene 43|2B=Scene 44|2C=Scene 45|2D=Scene 46|2E=Scene 47|2F=Scene 48|30=Scene 49|31=Scene 50|32=Scene 51|33=Scene 52|34=Scene 53|35=Scene 54|36=Scene 55|37=Scene 56|38=Scene 57|39=Scene 58|3A=Scene 59|3B=Scene 60|3C=Scene 61|3D=Scene 62|3E=Scene 63|3F=Scene 64"/>
+                </Parameter>
+            </ParameterGroup>
+            <ParameterGroup Name="RGB LED" Id="7">
+                <Parameter Id="46" IdName="rgbType">
+                    <Description>Type</Description>
+                    <Value Type="uint8" Default="01" Options="00=inactive|01=intern"/>
+                </Parameter>
+                <Parameter Id="47" IdName="rgbBrightnessDay">
+                    <Description>Brightness day</Description>
+                    <Value Type="uint8" Default="05" Options="00=off|01=1|02=2|03=3|04=4|05=5"/>
+                </Parameter>
+                <Parameter Id="48" IdName="rgbBrightnessNight">
+                    <Description>Brightness night</Description>
+                    <Value Type="uint8" Default="01" Options="00=off|01=1|02=2|03=3|04=4|05=5"/>
+                </Parameter>
+                <Parameter Id="49" IdName="rgbColorOnClick">
+                    <Description>Color on click</Description>
+                    <Value Type="uint8" Default="02" Options="00=Red|01=Green|02=Blue|FF=off"/>
+                </Parameter>
+                <Parameter Id="50" IdName="rgbStateShortColor">
+                    <Description>Color status short click</Description>
+                    <Value Type="uint8" Default="01" Options="00=Red|01=Green|02=Blue|FF=off"/>
+                </Parameter>
+                <Parameter Id="51" IdName="rgbStateLongColor">
+                    <Description>Color status long click</Description>
+                    <Value Type="uint8" Default="00" Options="00=Red|01=Green|02=Blue|FF=off"/>
+                </Parameter>
+            </ParameterGroup>
+        </Parameters>
+        <CommObjects>
+            <CommObject Id="0" IdName="tempValue">
+                <Name>Temperature</Name>
+                <Function>Sensor value</Function>
+                <DataPointType>9.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+            <CommObject Id="1" IdName="tempSendValue">
+                <Name>Temperature</Name>
+                <Function>Send value</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+            <CommObject Id="2" IdName="rhValue">
+                <Name>Humidity</Name>
+                <Function>Sensor value</Function>
+                <DataPointType>9.007</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+            <CommObject Id="3" IdName="rhSendValue">
+                <Name>Humidity</Name>
+                <Function>Send value</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+            <CommObject Id="4" IdName="vocValue">
+                <Name>VOC</Name>
+                <Function>Sensor value</Function>
+                <DataPointType>9.008</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+            <CommObject Id="5" IdName="vocSendValue">
+                <Name>VOC</Name>
+                <Function>Send value</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+			<CommObject Id="6" IdName="tvocValue">
+                <Name>TVOC</Name>
+                <Function>Sensor value</Function>
+                <DataPointType>9.008</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+			<CommObject Id="7" IdName="owtempValue">
+                <Name>OneWire Temperature</Name>
+                <Function>Sensor value</Function>
+                <DataPointType>9.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+			<CommObject Id="8" IdName="owtempSendValue">
+                <Name>OneWire Temperature</Name>
+                <Function>Send value</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+			<CommObject Id="9" IdName="btnShortValue">
+                <Name>Button</Name>
+                <Function>Short click</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+			<CommObject Id="10" IdName="btnShortInput">
+                <Name>Button</Name>
+                <Function>Short click input</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>43</Flags>
+            </CommObject>
+			<CommObject Id="11" IdName="btnShortScene">
+                <Name>Button</Name>
+                <Function>Short click scene</Function>
+                <DataPointType>17.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+			<CommObject Id="12" IdName="btnLongValue">
+                <Name>Button</Name>
+                <Function>Long click</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+			<CommObject Id="13" IdName="btnLongInput">
+                <Name>Button</Name>
+                <Function>Long click input</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>43</Flags>
+            </CommObject>
+			<CommObject Id="14" IdName="btnLongScene">
+                <Name>Button</Name>
+                <Function>Long click scene</Function>
+                <DataPointType>17.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+            <CommObject Id="15" IdName="btnDimSw">
+                <Name>Button</Name>
+                <Function>Dimmer switch</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+			<CommObject Id="16" IdName="btnDimSwInput">
+                <Name>Button</Name>
+                <Function>Dimmer switch input</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>43</Flags>
+            </CommObject>
+            <CommObject Id="17" IdName="btnDim">
+                <Name>Button</Name>
+                <Function>Dimmer</Function>
+                <DataPointType>3.007</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+			<CommObject Id="18" IdName="binD0SendValue">
+                <Name>Binary D0</Name>
+                <Function>Send value</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+			<CommObject Id="19" IdName="binD0ValueInput">
+                <Name>Binary D0</Name>
+                <Function>Value input</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>43</Flags>
+            </CommObject>
+			<CommObject Id="20" IdName="binD0Scene">
+                <Name>Binary D0</Name>
+                <Function>Scene</Function>
+                <DataPointType>17.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+			<CommObject Id="21" IdName="binD1SendValue">
+                <Name>Binary D1</Name>
+                <Function>Send value</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+			<CommObject Id="22" IdName="binD1ValueInput">
+                <Name>Binary D1</Name>
+                <Function>Value input</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>43</Flags>
+            </CommObject>
+			<CommObject Id="23" IdName="binD1Scene">
+                <Name>Binary D1</Name>
+                <Function>Scene</Function>
+                <DataPointType>17.001</DataPointType>
+                <Flags>52</Flags>
+            </CommObject>
+			<CommObject Id="24" IdName="nightMode">
+                <Name>Night mode</Name>
+                <Function>Value</Function>
+                <DataPointType>1.001</DataPointType>
+                <Flags>43</Flags>
+            </CommObject>
+        </CommObjects>
+		<Dependencies>
+			<ParameterDependency ParamId="1" Test="eq" TestParamId="0" TestValue="01"/>
+			<ParameterDependency ParamId="2" Test="eq" TestParamId="0" TestValue="02"/>
+			<ParameterDependency ParamId="3" Test="ne" TestParamId="0" TestValue="00"/>
+			<ParameterDependency ParamId="4" Test="ne" TestParamId="0" TestValue="00"/>
+			<ParameterDependency ParamId="5" Test="ne" TestParamId="0" TestValue="00"/>
+			<ParameterDependency ParamId="6" Test="ne" TestParamId="0" TestValue="00"/>
+			<ParameterDependency ParamId="7" Test="ne" TestParamId="0" TestValue="00"/>
+			
+			<ParameterDependency ParamId="9" Test="eq" TestParamId="8" TestValue="01"/>
+			<ParameterDependency ParamId="10" Test="eq" TestParamId="8" TestValue="02"/>
+			<ParameterDependency ParamId="11" Test="ne" TestParamId="8" TestValue="00"/>
+			<ParameterDependency ParamId="12" Test="ne" TestParamId="8" TestValue="00"/>
+			<ParameterDependency ParamId="13" Test="ne" TestParamId="8" TestValue="00"/>
+			<ParameterDependency ParamId="14" Test="ne" TestParamId="8" TestValue="00"/>
+			<ParameterDependency ParamId="15" Test="ne" TestParamId="8" TestValue="00"/>
+			
+			<ParameterDependency ParamId="17" Test="eq" TestParamId="16" TestValue="01"/>
+			<ParameterDependency ParamId="18" Test="eq" TestParamId="16" TestValue="02"/>
+			<ParameterDependency ParamId="19" Test="ne" TestParamId="16" TestValue="00"/>
+			<ParameterDependency ParamId="20" Test="ne" TestParamId="16" TestValue="00"/>
+			<ParameterDependency ParamId="21" Test="ne" TestParamId="16" TestValue="00"/>
+			<ParameterDependency ParamId="22" Test="ne" TestParamId="16" TestValue="00"/>
+			<ParameterDependency ParamId="23" Test="ne" TestParamId="16" TestValue="00"/>
+			
+			<ParameterDependency ParamId="25" Test="eq" TestParamId="24" TestValue="01"/>
+			<ParameterDependency ParamId="26" Test="eq" TestParamId="24" TestValue="02"/>
+			<ParameterDependency ParamId="27" Test="ne" TestParamId="24" TestValue="00"/>
+			<ParameterDependency ParamId="28" Test="ne" TestParamId="24" TestValue="00"/>
+			<ParameterDependency ParamId="29" Test="ne" TestParamId="24" TestValue="00"/>
+			<ParameterDependency ParamId="30" Test="ne" TestParamId="24" TestValue="00"/>
+			<ParameterDependency ParamId="31" Test="ne" TestParamId="24" TestValue="00"/>
+			
+			<ParameterDependency ParamId="33" Test="eq" TestParamId="32" TestValue="03"/>
+			<ParameterDependency ParamId="34" Test="ge" TestParamId="32" TestValue="02"/>
+			<ParameterDependency ParamId="35" Test="eq" TestParamId="32" TestValue="03"/>
+			
+			<ParameterDependency ParamId="37" Test="ge" TestParamId="36" TestValue="01"/>
+			<ParameterDependency ParamId="38" Test="ge" TestParamId="36" TestValue="01"/>
+			<ParameterDependency ParamId="39" Test="eq" TestParamId="36" TestValue="01"/>
+			<ParameterDependency ParamId="40" Test="eq" TestParamId="36" TestValue="01"/>
+			
+			<ParameterDependency ParamId="42" Test="ge" TestParamId="41" TestValue="01"/>
+			<ParameterDependency ParamId="43" Test="ge" TestParamId="41" TestValue="01"/>
+			<ParameterDependency ParamId="44" Test="eq" TestParamId="41" TestValue="01"/>
+			<ParameterDependency ParamId="45" Test="eq" TestParamId="41" TestValue="01"/>
+			
+			<ParameterDependency ParamId="47" Test="ge" TestParamId="46" TestValue="01"/>
+			<ParameterDependency ParamId="48" Test="eq" TestParamId="46" TestValue="01"/>
+			<ParameterDependency ParamId="49" Test="eq" TestParamId="46" TestValue="01"/>
+			<ParameterDependency ParamId="50" Test="ge" TestParamId="46" TestValue="01"/>
+			<ParameterDependency ParamId="51" Test="eq" TestParamId="46" TestValue="01"/>
+			
+			<CommObjectDependency CommObjId="0" Test="ne" TestParamId="0" TestValue="00"/>
+			<CommObjectDependency CommObjId="1" Test="ne" TestParamId="0" TestValue="00"/>
+			
+			<CommObjectDependency CommObjId="2" Test="ne" TestParamId="8" TestValue="00"/>
+			<CommObjectDependency CommObjId="3" Test="ne" TestParamId="8" TestValue="00"/>
+			
+			<CommObjectDependency CommObjId="4" Test="ne" TestParamId="16" TestValue="00"/>
+			<CommObjectDependency CommObjId="5" Test="ne" TestParamId="16" TestValue="00"/>
+			<CommObjectDependency CommObjId="6" Test="ne" TestParamId="16" TestValue="00"/>
+			
+			<CommObjectDependency CommObjId="7" Test="ne" TestParamId="24" TestValue="00"/>
+			<CommObjectDependency CommObjId="8" Test="ne" TestParamId="24" TestValue="00"/>
+			
+			<!--<CommObjectDependency CommObjId="9" Test="gt" TestParamId="32" TestValue="00"/>-->
+			<CommObjectDependency CommObjId="9" Test="ge" TestParamId="34" TestValue="40"/>
+			<CommObjectDependency CommObjId="10" Test="eq" TestParamId="34" TestValue="40"/>
+			<CommObjectDependency CommObjId="11" Test="le" TestParamId="34" TestValue="3F"/>
+			
+			<!--<CommObjectDependency CommObjId="12" Test="gt" TestParamId="33" TestValue="00"/>-->
+			<CommObjectDependency CommObjId="12" Test="ge" TestParamId="35" TestValue="40"/>
+			<CommObjectDependency CommObjId="13" Test="eq" TestParamId="35" TestValue="40"/>
+			<CommObjectDependency CommObjId="14" Test="le" TestParamId="35" TestValue="3F"/>
+			
+			<CommObjectDependency CommObjId="15" Test="eq" TestParamId="32" TestValue="01"/>
+			<CommObjectDependency CommObjId="16" Test="eq" TestParamId="32" TestValue="01"/>
+			<CommObjectDependency CommObjId="17" Test="eq" TestParamId="32" TestValue="01"/>
+        </Dependencies>
+    </Device>
+</KonnektingDevice>
