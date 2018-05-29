@@ -99,21 +99,21 @@ void commitMemory() {
 
 byte readMemory(int index) {
 #ifdef EXTENDED_DEBUG  
-    Debug.println(F("FLASH read on index %d"),index);
+    Debug.println(F("\nFLASH read on index %d"),index);
 #endif    
     return EEPROM.read(index);
 }
 
 void writeMemory(int index, byte val) {
 #ifdef EXTENDED_DEBUG  
-    Debug.println(F("FLASH write value %d on index %d"),val, index);
+    Debug.println(F("\nFLASH write value %d on index %d"),val, index);
 #endif
     EEPROM.write(index, val);
 }
 
 void updateMemory(int index, byte val) {
 #ifdef EXTENDED_DEBUG  
-    Debug.println(F("FLASH update"));
+    Debug.println(F("\nFLASH update"));
 #endif
     if (EEPROM.read(index) != val) {
         EEPROM.write(index, val);
@@ -122,11 +122,23 @@ void updateMemory(int index, byte val) {
 
 void commitMemory() {
 #ifdef EXTENDED_DEBUG  
-    Debug.println(F("FLASH commit"));
+    Debug.println(F("\nFLASH commit"));
 #endif
     EEPROM.commit();
 }
 #endif
+
+#ifdef KNX  
+void progLed (bool state){ 
+    progMode = state;
+}
+
+void progButtonPressed(){
+    //toggle ProgState
+    Konnekting.setProgState(!Konnekting.isProgState());
+}
+#endif
+
 
 void kinit(){
     Wire.begin();
@@ -150,11 +162,11 @@ void kinit(){
 
     // Initialize KNX enabled Arduino Board
     Konnekting.init(KNX_SERIAL,
-            PIN_PROG_BUTTON,
-            PIN_PROG_LED,
+            &progLed,
             MANUFACTURER_ID,
             DEVICE_ID,
             REVISION); 
+    pinMode(PIN_PROG_BUTTON, INPUT);
+    attachInterrupt(digitalPinToInterrupt(PIN_PROG_BUTTON), progButtonPressed, RISING);
 #endif
 }
-

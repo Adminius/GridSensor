@@ -1,5 +1,5 @@
 /*----------
-  Grid Sensor 0.3
+  Grid Sensor 0.4
 
 Sensors that can be used and it i2c addresses:
 T/RH:
@@ -74,6 +74,7 @@ float tmp_rh = ERROR_TRH;
 int tmp_voc = ERROR_VOC;
 int tmp_tvoc = ERROR_VOC;
 float tmp_owt = ERROR_TRH;
+bool progMode = false;
 
 //temperature
 byte typeTemp;
@@ -231,6 +232,10 @@ void printConfig(){
     Debug.println(F("longClickDurationBtn: %d ms"),longClickDurationBtn);
     Debug.println(F("valueShortClickBtn: %d"),valueShortClickBtn);
     Debug.println(F("valueLongClickBtn: %d"),valueLongClickBtn);
+    Debug.println(F("brightnessTypeRgb: %d"),brightnessTypeRgb);
+    Debug.println(F("colorOnClickRgb: %d"),colorOnClickRgb);
+    Debug.println(F("colorStateShortRgb: %d"),colorStateShortRgb);
+    Debug.println(F("colorStateLongRgb: %d"),colorStateLongRgb);
 #ifdef BINARY  
 //        Debug.println(F("Input: %d  active: %d  invert: %d  delay: %d ms"),i,inputActive[i],invertOutput[i],outputDelay[i]);
 #endif
@@ -245,29 +250,30 @@ void knxEvents(byte index) {
     switch (index) {
         case COMOBJ_btnShortInput:
             boolShortClick = Knx.read(COMOBJ_btnShortInput);
-            Debug.println(F("boolShortClick: %d"),boolShortClick);
+            Debug.println(F("KNX event: boolShortClick: %d"),boolShortClick);
             break;
         case COMOBJ_btnLongInput:
             boolLongClick = Knx.read(COMOBJ_btnLongInput);
-            Debug.println(F("boolLongClick: %d"),boolLongClick);
+            Debug.println(F("KNX event: boolLongClick: %d"),boolLongClick);
             break;
         case COMOBJ_binD0ValueInput:
             inputStateD0 = Knx.read(COMOBJ_binD0ValueInput);
-            Debug.println(F("inputStateD0: %d"),inputStateD0);
+            Debug.println(F("KNX event: inputStateD0: %d"),inputStateD0);
             break;
         case COMOBJ_binD1ValueInput:
             inputStateD1 = Knx.read(COMOBJ_binD1ValueInput);
-            Debug.println(F("inputStateD1: %d"),inputStateD1);
+            Debug.println(F("KNX event: inputStateD1: %d"),inputStateD1);
             break;
         case COMOBJ_nightMode:
             nightMode = (bool) Knx.read(COMOBJ_nightMode);
-            Debug.println(F("nightMode: %d"),nightMode);
+            Debug.println(F("KNX event: nightMode: %d"),nightMode);
             break;
         default:
           break;
     }
 
 };
+
 #endif //KNX
 
 #if ((defined(HTU21_HDC1080) && defined(ANALOG_T_RH)))
@@ -276,6 +282,8 @@ void knxEvents(byte index) {
 #if (defined(VOC_CCS811) && defined(VOC_IAQ))
 #error "Please define only one of this sensors: VOC_CCS811 or VOC_IAQ"
 #endif
+#ifdef KNX
 #ifndef KONNEKTING_DEVICE_LIBRARY_VERSION
 #error "This sketch requires beta4a version of KONNEKTING Library"
+#endif
 #endif

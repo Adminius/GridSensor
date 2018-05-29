@@ -1,19 +1,26 @@
 void setup() {
 
     kinit();
+    Debug.println(F("kinit done"));
     initRGB();
+    Debug.println(F("initRGB done"));
     initButton();
+    Debug.println(F("initButton done"));
 
 #ifdef TRH
     initTempRH();
+    Debug.println(F("initTempRH done"));
 #endif
 #ifdef VOC
     initVOC();
+    Debug.println(F("initVOC done"));
 #endif
 #ifdef ONEWIRE
     initOneWire();
+    Debug.println(F("initOneWire done"));
 #endif
 #ifdef KNX
+    Debug.println(F("KNX activated"));
     if (!Konnekting.isFactorySetting()) {
 
         typeTemp = (byte) Konnekting.getUINT8Param(PARAM_tempSendUpdate);
@@ -69,6 +76,9 @@ void setup() {
         colorStateLongRgb = Konnekting.getUINT8Param(PARAM_rgbStateLongColor);
     
     
+    }else{
+        //factory settings -> start progMode
+        Konnekting.setProgState(true);
     }
     //ToDo: send initial Values for COMOBJ_*SendValue
 #endif
@@ -76,5 +86,5 @@ void setup() {
 #ifdef KDEBUG
     printConfig();
 #endif
-    Debug.println(F("Setup is ready. go to loop..."));
+    Debug.println(F("\nSetup is ready. go to loop...\n"));
 }

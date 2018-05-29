@@ -2,7 +2,7 @@
 <KonnektingDevice xmlns="http://konnekting.de/xml/KonnektingDevice/v0">
     <Device ManufacturerId="7070" DeviceId="180" Revision="1">
         <ManufacturerName>KONNEKTING</ManufacturerName>
-        <DeviceName>Gridsensor 0.3</DeviceName>
+        <DeviceName>Gridsensor 0.4</DeviceName>
         <Parameters>
             <ParameterGroup Name="Temperature sensor" Id="0">
                 <Parameter Id="0" IdName="tempSendUpdate">

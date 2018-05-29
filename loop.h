@@ -1,11 +1,12 @@
 void loop() {
 
+    taskRgb();
+    
 #ifdef KNX
     Knx.task();
     if (Konnekting.isReadyForApplication()) {
 #endif //KNX
     taskButton();
-    taskRgb();
 #ifdef TRH
     taskTRH();
 #endif //TRH
@@ -14,6 +15,7 @@ void loop() {
 #endif //VOC
 #ifdef ONEWIRE
     taskOneWire();
+    Knx.task();
 #endif //ONEWIRE
          unsigned long currentMillis = millis();
          if (currentMillis - lastMillis >= MEASURE_CYCLE) {
@@ -21,18 +23,23 @@ void loop() {
             Debug.println(F("\nValues to send: "));
 #ifdef TRH
             tmp_t = getTemp();
+            Knx.task();
             tmp_rh = getRH();
+            Knx.task();
             Debug.println(F("Temp: \t%3.2f °C"), tmp_t);
             Debug.println(F("RH: \t%3.2f %%"), tmp_rh);
 #endif //TRH
 #ifdef VOC
             tmp_voc = getVOC();
+            Knx.task();
             tmp_tvoc = getTVOC();
+            Knx.task();
             Debug.println(F("VOC: \t%d ppm"), tmp_voc);
             Debug.println(F("tVOC: \t%d ppm"), tmp_tvoc);
 #endif //VOC
 #ifdef ONEWIRE
             tmp_owt = getOneWireTemp();
+            Knx.task();
             Debug.println(F("OwTemp:\t%3.2f °C"), tmp_owt);
 #endif //ONEWIRE
             Debug.println(F(""));

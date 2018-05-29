@@ -1,4 +1,4 @@
-# GridSensor 0.3
+# GridSensor 0.4
 
 This is a beta version. Not all features are working now
 

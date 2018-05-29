@@ -54,25 +54,24 @@ void taskVOC(){
 
 
 #ifdef VOC_CCS811
-#include "src/CCS811/Adafruit_CCS811.h"      
+#include "src/CCS811/SparkFunCCS811.h"      
 
 
 #define CYCLE_VOC 10000 //10s
 unsigned long previousVocTime = 0;
 bool vocOk = false;
 
-Adafruit_CCS811 ccs;
+CCS811 ccs(ADDRESS_CCS811);
 
 
 void initVOC(){
-    if(!ccs.begin(ADDRESS_CCS811)){
+    if(CCS811Core::SENSOR_SUCCESS != ccs.begin()){
           Debug.println(F("VOC: Initialization failed."));
           vocOk = false;
     }else{
           vocOk = true;
           
     }
-    while(!ccs.available()); //??
 }
 
 int getVOC(){
@@ -88,22 +87,23 @@ int taskVOC(){
         previousVocTime = millis();
         if(vocOk){
       
-#ifdef TRH
-//        ccs.compensate(getTemp(), getRH());
-#endif
-        
-            if(ccs.available()){
-                if(!ccs.readData()){
-                    voc = ccs.geteCO2();
-                    tvoc = ccs.getTVOC();
+            if(ccs.dataAvailable()){
+                ccs.readAlgorithmResults();
+                voc = ccs.getCO2();
+                tvoc = ccs.getTVOC();
 #ifdef EXTENDED_DEBUG
-                    Debug.println(F("VOC: %d ppm, TVOC: %d ppm"), voc, tvoc);
+                Debug.println(F("VOC: %d ppm, TVOC: %d ppm"), voc, tvoc);
 #endif
-                }
             }
         }else{
             initVOC();
         }
+#ifdef TRH
+#ifdef EXTENDED_DEBUG
+       Debug.println(F("VOC: applying environmental data: %3.2f °C, : %3.2f %%"), getTemp(),getRH());
+#endif
+       ccs.setEnvironmentalData(getRH(),getTemp());
+#endif
     }
 }
 
