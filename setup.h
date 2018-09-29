@@ -64,10 +64,14 @@ void setup() {
         valueShortClickBtn = (byte) Konnekting.getUINT8Param(PARAM_btnValueShortClick);
         valueLongClickBtn = (byte) Konnekting.getUINT8Param(PARAM_btnValueLongClick);
 
-        valueBinaryD0 = (byte) Konnekting.getUINT8Param(PARAM_binD0type);
-        valueBinaryD1 = (byte) Konnekting.getUINT8Param(PARAM_binD1type);
+        typeBinaryD0 = (byte) Konnekting.getUINT8Param(PARAM_binD0type);
+        typeBinaryD1 = (byte) Konnekting.getUINT8Param(PARAM_binD1type);
         binaryCycleD0 = (uint16_t) Konnekting.getUINT16Param(PARAM_binD0cycle);
         binaryCycleD1 = (uint16_t) Konnekting.getUINT16Param(PARAM_binD1cycle);
+        binaryD0open = (byte) Konnekting.getUINT8Param(PARAM_binD0open);
+        binaryD1open = (byte) Konnekting.getUINT8Param(PARAM_binD1open);
+        binaryD0close = (byte) Konnekting.getUINT8Param(PARAM_binD0close);
+        binaryD1close = (byte) Konnekting.getUINT8Param(PARAM_binD1close);
   
         typeRgb = Konnekting.getUINT8Param(PARAM_rgbType);
         brightnessTypeRgb = Konnekting.getUINT8Param(PARAM_rgbBrightnessDay);
