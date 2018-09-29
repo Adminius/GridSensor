@@ -1,6 +1,6 @@
 # GridSensor 0.4
 
-This is a beta version. Not all features are working now
+This is a beta version. Not all features are working now.
 
 Supported sensors:
 - HTU21D / HDC1080

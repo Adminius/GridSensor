@@ -244,18 +244,62 @@ void loop() {
             Debug.println(F("Binary D0: new state: %d"), currentStateD0);
             if ((currentMillis - lastOutputDelayD0) >= outputDelayD0){
                 lastStateD0 = currentStateD0;
-                if(valueBinaryD0 == V_SWITCH){//switch value
-                    Knx.write(COMOBJ_binD0SendValue, !boolShortClick);
-                }else if(valueBinaryD0 == V_VAL_0){//send 0
-                    Knx.write(COMOBJ_binD0SendValue, 0);
-                }else if(valueBinaryD0 == V_VAL_1){//send 1
-                    Knx.write(COMOBJ_binD0SendValue, 1);
-                }else if(V_SCENE_1 <= valueBinaryD0 && valueBinaryD0 <= V_SCENE_64 ){//send scene
-                    Knx.write(COMOBJ_binD0Scene, valueShortClickBtn);
-                }
+                if(typeBinaryD0 == BIN_OPENCLOSE){
+                  if(currentStateD0 == 0){
+                      if(binaryD0open == V_SWITCH){//switch value
+                          Knx.write(COMOBJ_binD0SendValue, !boolShortClick);
+                      }else if(binaryD0open == V_VAL_0){//send 0
+                          Knx.write(COMOBJ_binD0SendValue, 0);
+                      }else if(binaryD0open == V_VAL_1){//send 1
+                          Knx.write(COMOBJ_binD0SendValue, 1);
+                      }else if(V_SCENE_1 <= binaryD0open && binaryD0open <= V_SCENE_64 ){//send scene
+                          Knx.write(COMOBJ_binD0Scene, valueShortClickBtn);
+                      }
+                   }else {
+                      if(binaryD0close == V_SWITCH){//switch value
+                          Knx.write(COMOBJ_binD0SendValue, !boolShortClick);
+                      }else if(binaryD0close == V_VAL_0){//send 0
+                          Knx.write(COMOBJ_binD0SendValue, 0);
+                      }else if(binaryD0close == V_VAL_1){//send 1
+                          Knx.write(COMOBJ_binD0SendValue, 1);
+                      }else if(V_SCENE_1 <= binaryD0close && binaryD0close <= V_SCENE_64 ){//send scene
+                          Knx.write(COMOBJ_binD0Scene, valueShortClickBtn);
+                      }
+                   }                
+               }
             }
             lastMillisBinaryD0 = currentMillis;
         }
+        if (currentStateD1 != lastStateD1){
+            Debug.println(F("Binary D1: new state: %d"), currentStateD1);
+            if ((currentMillis - lastOutputDelayD1) >= outputDelayD1){
+                lastStateD1 = currentStateD1;
+                if(typeBinaryD1 == BIN_OPENCLOSE){
+                  if(currentStateD1 == 0){
+                      if(binaryD1open == V_SWITCH){//switch value
+                          Knx.write(COMOBJ_binD1SendValue, !boolShortClick);
+                      }else if(binaryD1open == V_VAL_0){//send 0
+                          Knx.write(COMOBJ_binD1SendValue, 0);
+                      }else if(binaryD1open == V_VAL_1){//send 1
+                          Knx.write(COMOBJ_binD1SendValue, 1);
+                      }else if(V_SCENE_1 <= binaryD1open && binaryD1open <= V_SCENE_64 ){//send scene
+                          Knx.write(COMOBJ_binD1Scene, valueShortClickBtn);
+                      }
+                   }else {
+                      if(binaryD1close == V_SWITCH){//switch value
+                          Knx.write(COMOBJ_binD1SendValue, !boolShortClick);
+                      }else if(binaryD1close == V_VAL_0){//send 0
+                          Knx.write(COMOBJ_binD1SendValue, 0);
+                      }else if(binaryD1close == V_VAL_1){//send 1
+                          Knx.write(COMOBJ_binD1SendValue, 1);
+                      }else if(V_SCENE_1 <= binaryD1close && binaryD1close <= V_SCENE_64 ){//send scene
+                          Knx.write(COMOBJ_binD1Scene, valueShortClickBtn);
+                      }
+                   }                
+               }
+            }
+            lastMillisBinaryD1 = currentMillis;
+        }  
 #endif //BINARY
 #ifdef KNX
     }//isReadyForApplication

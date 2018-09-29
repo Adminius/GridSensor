@@ -36,7 +36,7 @@ AMS iAq Core  0x5A
 //DOSN'T WORK YET:
 //#define ANALOG_T_RH //Temp TMP36 + RH HIH4030/5030
 //#define VOC_IAQ //VOC
-//#define BINARY
+#define BINARY
 
 
 #define ERROR_TRH -127.00
@@ -50,6 +50,9 @@ AMS iAq Core  0x5A
 #define CYCLIC          2
 #define DO_NOTHING      0xFF
 
+#define BIN_INACTIVE 0
+#define BIN_OPENCLOSE 1
+#define BIN_SWITCH 2
 #define V_SWITCH   0x40
 #define V_VAL_0    0x50
 #define V_VAL_1    0x51
@@ -137,8 +140,12 @@ bool boolLongClick = false;
 //int dimDirection = true; //false => off, true => on
 
 //binary iputs
-byte valueBinaryD0;
-byte valueBinaryD1;
+byte typeBinaryD0;
+byte typeBinaryD1;
+byte binaryD0open;
+byte binaryD0close;
+byte binaryD1open;
+byte binaryD1close;
 uint16_t binaryCycleD0 = 100;
 uint16_t binaryCycleD1 = 100;
 unsigned long lastMillisBinaryD0 = 0;
